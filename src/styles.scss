@@ -1,2 +1,26 @@
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mr-16 {
+  margin-right: 16px;
+}
+
+.overflow-visible {
+  overflow: visible !important;
+}
+
+.full-width {
+  width: 100%;
+}
