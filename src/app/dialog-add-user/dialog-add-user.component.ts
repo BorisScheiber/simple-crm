@@ -21,7 +21,7 @@ export class DialogAddUserComponent {
 
   constructor(
     private firestore: Firestore,
-    private dialogRef: MatDialogRef<DialogAddUserComponent>
+    public dialogRef: MatDialogRef<DialogAddUserComponent>
 
   ) {}
 

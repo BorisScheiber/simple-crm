@@ -8,17 +8,13 @@
         <th>City</th>
       </tr>
 
+      @for (user of users; track $index) {
       <tr>
-        <td>asd</td>
-        <td>asfd</td>
-        <td>asf</td>
+        <td>{{ user.firstName }} {{ user.lastName }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.city }}</td>
       </tr>
-
-      <tr>
-        <td>asd</td>
-        <td>asfd</td>
-        <td>asf</td>
-      </tr>
+    }
 
 
     </table>
