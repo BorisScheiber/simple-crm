@@ -4,11 +4,12 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogAddUserComponent } from '../dialog-add-user/dialog-add-user.component';
 import { User } from '../models/user.class';
 import { collection, Firestore, onSnapshot } from '@angular/fire/firestore';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-user',
   standalone: true,
-  imports: [materialModules],
+  imports: [materialModules, RouterModule],
   templateUrl: './user.component.html',
   styleUrl: './user.component.scss'
 })
@@ -30,15 +31,18 @@ export class UserComponent implements OnInit, OnDestroy {
     
     // Live-Updates abonnieren (entspricht .valueChanges())
     this.unsubUsers = onSnapshot(usersCollection, (snapshot) => {
-      // Array zurücksetzen
-      this.users = [];
+    this.users = [];
     
-      snapshot.forEach((doc) => {
-        this.users.push(new User(doc.data()));
-      });
-      
-      console.log('Received changes from DB', this.users);
+    snapshot.forEach((doc) => {
+      const userData = {
+        ...doc.data(),    // Packt firstName, lastName etc. aus
+        id: doc.id        // Fügt die Firestore-ID hinzu
+      };
+      this.users.push(new User(userData));
     });
+    
+    console.log('Users mit IDs:', this.users);
+  });
   }
 
   ngOnDestroy() {

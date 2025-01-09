@@ -1,5 +1,5 @@
 export class User {
-    id?: string;
+    id?: string; // Optional, da neue User noch keine ID haben
     firstName: string;
     lastName: string;
     email: string;
@@ -20,6 +20,7 @@ export class User {
     }
 
     toJSON() {
+        // ID nicht in toJSON, da sie von Firebase kommt
         return {
             firstName: this.firstName,
             lastName: this.lastName,
