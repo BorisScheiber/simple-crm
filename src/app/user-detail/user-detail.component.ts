@@ -38,8 +38,14 @@ export class UserDetailComponent implements OnInit {
           id: doc.id,
           ...doc.data(),
         };
+        console.log('User data Object:', userData);
         this.user = new User(userData);
+        console.log(this.user);
       }
     });
+  }
+
+  openAdressDialog() {
+    // Dialog öffnen
   }
 }
