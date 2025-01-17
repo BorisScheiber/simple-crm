@@ -3,6 +3,9 @@ import { materialModules } from '../shared/material/material';
 import { doc, Firestore, onSnapshot } from '@angular/fire/firestore';
 import { ActivatedRoute } from '@angular/router';
 import { User } from '../models/user.class';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogEditAdressComponent } from '../dialog-edit-adress/dialog-edit-adress.component';
+import { DialogEditUserComponent } from '../dialog-edit-user/dialog-edit-user.component';
 
 @Component({
   selector: 'app-user-detail',
@@ -15,7 +18,11 @@ export class UserDetailComponent implements OnInit {
   userId: string = '';
   user: User = new User();
 
-  constructor(private route: ActivatedRoute, private firestore: Firestore) {}
+  constructor(
+    private route: ActivatedRoute,
+    private firestore: Firestore,
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit() {
     // Id aus der Url holen
@@ -45,7 +52,11 @@ export class UserDetailComponent implements OnInit {
     });
   }
 
-  openAdressDialog() {
-    // Dialog öffnen
+  editMenu() {
+    this.dialog.open(DialogEditAdressComponent);
+  }
+
+  editUserDetail() {
+    this.dialog.open(DialogEditUserComponent);
   }
 }

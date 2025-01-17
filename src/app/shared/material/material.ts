@@ -9,6 +9,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatCardModule} from '@angular/material/card';
+import {MatMenuModule} from '@angular/material/menu';
 
 
 export const materialModules = [
@@ -22,5 +23,6 @@ export const materialModules = [
   MatFormFieldModule,
   MatDatepickerModule,
   MatProgressBarModule,
-  MatCardModule
+  MatCardModule,
+  MatMenuModule
 ];
