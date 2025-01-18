@@ -53,10 +53,20 @@ export class UserDetailComponent implements OnInit {
   }
 
   editMenu() {
-    this.dialog.open(DialogEditAdressComponent);
-  }
+    // Erst erstellen wir eine Kopie der Basis-Daten
+    const userCopy = new User(this.user.toJSON());
+    // Dann fügen wir die ID separat hinzu
+    userCopy.id = this.userId;
+    
+    // Öffnen des Dialogs mit der vollständigen Kopie
+    this.dialog.open(DialogEditAdressComponent, {
+        data: userCopy
+    });
+}
 
   editUserDetail() {
-    this.dialog.open(DialogEditUserComponent);
+    this.dialog.open(DialogEditUserComponent, {
+      data: new User(this.user.toJSON()),
+    });
   }
 }
