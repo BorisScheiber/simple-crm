@@ -3,7 +3,7 @@ import { materialModules } from '../shared/material/material';
 import { User } from '../models/user.class';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
-import { Firestore } from '@angular/fire/firestore';
+import { doc, Firestore, updateDoc } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-dialog-edit-adress',
@@ -25,7 +25,37 @@ export class DialogEditAdressComponent {
 
 
 
-  saveUser() {
-    console.log(this.user.id);
+  async saveUser() {
+
+    if (!this.user.id) {
+      console.error('No user id found');
+      return;
+    }
+
+    this.loading = true;
+
+    try {
+      const userDoc = doc(this.firestore, 'users', this.user.id);
+
+      const updateData = {
+        street: this.user.street,
+        zipCode: this.user.zipCode,
+        city: this.user.city,
+      };
+
+      await updateDoc(userDoc, updateData);
+      this.dialogRef.close();
+    } catch (error) {
+      console.error('Error while saving user data:', error);
+    } finally {
+      this.loading = false;
+    }
   }
+
+  
+
+
+
+
+
 }

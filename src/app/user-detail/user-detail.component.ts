@@ -65,8 +65,11 @@ export class UserDetailComponent implements OnInit {
 }
 
   editUserDetail() {
+    const userCopy = new User(this.user.toJSON());
+    userCopy.id = this.userId;
+    
     this.dialog.open(DialogEditUserComponent, {
-      data: new User(this.user.toJSON()),
+      data: userCopy
     });
   }
 }
